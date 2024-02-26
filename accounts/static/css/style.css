@@ -1,0 +1,51 @@
+
+.login-box {
+    position: absolute;
+    top: 20%;
+    left: 30%; 
+    width: 400px;
+    height: 400px;
+    padding: 20px;
+    padding-bottom: 30px;
+    border: 1px solid #ccc;
+    margin-left: 50px;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    border-radius: 5px;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    /* background-color:#6ce8bf; */
+    box-shadow: 10px;
+    
+}
+
+/* .login-form,.login-submit{
+    opacity: .5; */
+    /* border: 1px solid; */
+/* } */
+
+.login-submit {
+    /* background-color: #4CAF50;
+    color: white;
+    padding: 10px 15px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer; */
+    border: 1px solid;
+    border-color: rgb(54, 51, 51);
+    padding: 10px 15px;
+    border-radius: 4px;
+    background-color:silver;
+}
+/* .login-submit:hover{
+    background-color:rgb(73, 110, 73);
+    color:white;
+} */
+/* .grid-container{
+    grid-template-columns: auto auto;
+} */
+
+.login-icon{
+    position: relative;
+    margin-left: 75%;
+    margin-top: 30%;
+}
+/* reg page */

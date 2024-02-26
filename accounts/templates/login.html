@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="login-box"> 
+    <div>
+        <h2 style="text-align: center;">Login</h2>
+        <form action="" method="post">
+            {% csrf_token %}
+            <div class="form-group login-form mb-3">
+            {{ form.username}}
+            </div>
+            <div class="form-group login-form mb-3">
+            {{ form.password}}
+            </div>
+            <div class="mb-3">
+            <button type="submit" class="login-submit" style="width:360px">Submit</button>
+            </div>
+        </form>
+        <div>
+            <a href="{% url 'reg' %}"><p>Not a User?</p></a>
+        </div>
+        <div class="login-icon">
+            <i class="fa-brands fa-facebook fa-xl" style="color: #0d0d0d;"></i>
+            <i class="fa-brands fa-linkedin fa-xl"></i>
+            <i class="fa-brands fa-instagram fa-xl"></i>
+        </div>
+    </div>
+    
+    
+</div>
+{% endblock %}

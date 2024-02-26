@@ -1,0 +1,101 @@
+{% include 'navbar.html' %}
+{% block content %}
+<!doctype html>
+<html lang="en">
+  <head>
+    <title>Title</title>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+     <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+    <script src="https://kit.fontawesome.com/ad5414c00a.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <style>    
+      input[type="checkbox"]:not(:checked), 
+      input[type="checkbox"]:checked {
+       position: absolute;
+      left: -9999%;
+}
+
+      input[type="checkbox"] + label {
+        display: inline-block;
+        padding: 10px;
+        cursor: pointer;
+        border: 1px solid black;
+        color: rgb(50, 2, 2);
+        background-color: white;
+        margin-bottom: 10px;
+      }
+
+      input[type="checkbox"]:checked + label {
+        border: 1px solid white;
+        color: white;
+        background-color: rgb(2, 35, 13);
+      }
+      input[type="checkbox"]:disabled + label {
+        color: #1b1a1a; 
+        background-color: #989898;
+        border: 1px solid black;
+        cursor:pointer; 
+    }
+    .card{
+      position: absolute;
+      top: 110px;
+      left: 20%;
+    }
+
+    </style>
+  
+  
+  </head>
+  <body>
+  <div class="container">
+    <div class="card" style="width: 300px;">
+      <div style="padding-left: 250px; padding-top: 20px;">
+        <span class="material-symbols-outlined">
+          search_hands_free
+          </span>
+      </div>
+        <div class="card-body">
+            <form action="" method="post">
+                {% csrf_token %}
+                <hr>
+                <div class="row">
+                    {% for seat_number in seat_numbers %}
+                        <div class="col-1" style="margin: 5px;">
+                            <div class="card-text" style="padding: 0%;">
+                              {% if seat_number not in available %}
+                                <input type="checkbox" name="selected_seats" value="{{ seat_number }}" id="{{ seat_number }}" disabled>
+                                <label for="{{seat_number}}" style="width: 50px;">{{ seat_number }}</label>
+                              {% else %}
+                                <input type="checkbox" name="selected_seats" value="{{ seat_number }}" id="{{ seat_number }}">
+                                <label  for="{{ seat_number }}" style="width: 50px; justify-content: center;">{{ seat_number }}</label>
+                              {% endif %}
+                            </div>
+                        </div>
+                        {% if forloop.counter|divisibleby:2 and not forloop.counter|divisibleby:4 %}
+                            <div class="col-3"></div>
+                        {% endif %}
+                        {% if forloop.counter|divisibleby:4 and not forloop.last %}
+                            </div><div class="row">
+                        {% endif %}
+                    {% endfor %}
+                    <button type="submit" class="btn btn-success">Book Seat</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+
+  
+
+  </body>
+</html>
+{% endblock content %}  

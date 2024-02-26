@@ -1,0 +1,85 @@
+{% include 'navbar.html' %}
+{% block content %}
+<!doctype html>
+<html lang="en">
+  <head>
+    <title>Title</title>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@200&family=Roboto:ital@0;1&display=swap" rel="stylesheet">
+ 
+ 
+ 
+ <style>
+    .date{
+      padding-left: 20px;
+      font-size:xx-large;
+      color: rgb(33, 124, 5);
+      font-family: 'Poppins', sans-serif;
+      font-family: 'Roboto', sans-serif;
+    }
+    .srdest{
+      font-family: 'Poppins', sans-serif;
+      font-family: 'Roboto', sans-serif;
+      color:rgb(98, 94, 94) ;
+    }
+    .cancel-button{
+      position: absolute;
+      bottom: 0%;
+      right: 3.1%;
+      margin: 0%;
+    }
+  </style>
+    
+  </head>
+  <body>
+    <h4 style="padding-bottom: 30px; padding-left: 26%; color: rgb(98, 94, 94);">My trips</h4>
+    {% for b in booking %}
+    <div class="container-fluid">
+        <div class="row">
+          <div class="col-3">
+          </div>
+          <div class="col-6" style="padding-top: 20px;">
+              <div class="card">
+                <div class="card-body">
+                  <div class="row">
+                    <div class="col-md-3">
+                        <p class="card-text date">{{b.bus.date.day}}</p>
+                        <p class="card-text">{{ b.bus.date|date:"F" }} {{b.bus.date.year}}</p>
+                        <p class="card-text" style="padding-left: 10px;"><b>{{ b.bus.date|date:"l" }}</b></p>
+                    </div>
+                    <div class="col-md-3" >
+                      <p class="card-text srdest" style="padding-top: 20px;">{{b.bus.source}}-{{b.bus.destination}}</p>
+                    </div>
+                    <div class="col-md-3">
+                      <p class="card-title">Boarding</p>
+                      <p class="card-text" style="padding-left: 12px;">{{b.bus.source}}</p>
+                    </div>
+                    <div class="col-md-1">
+                      <p class="card-title">Seat</p>
+                      <p class="card-text"><b>{{b.selected_seat}}</b></p>
+                    </div>
+                    <div class="col-md-1 cancel-button">
+                      <input type="submit" class="btn btn btn-success" value="cancel">
+                    </div>
+                  </div>
+                </div>
+              </div>
+          </div>
+        </div>
+    </div>
+    {% endfor %}
+  </body>
+</html>
+
+{% endblock content %}

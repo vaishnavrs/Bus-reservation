@@ -1,0 +1,101 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+<style>
+    * {
+      box-sizing: border-box;
+    }
+    
+    .row {
+      display: flex;
+      border: 1px solid ;
+      width: 900px;
+      height: 500px;
+      position: absolute;
+      top: 10%;
+      left:40%;
+      box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    }
+    
+    .column {
+      flex: 50%;
+      padding: 10px;
+      height: 300px;
+    }
+    .logo-reg{
+        position: absolute;
+        top: 30%;
+        left: 15%;
+    }
+    .column-2{
+        padding-top: 20px;
+    }
+    .reg-head{
+
+        text-align:center;
+        color:rgb(128, 203, 57);
+    }
+    .reg-icon{
+        position: relative;
+        margin-left: 75%;
+        margin-top: 15%;
+    }
+    </style>
+    
+    <div class="row">
+      <div class="column">
+        <img src="{% static 'img/bus Dekho.png' %}" alt="" height="140px" width="140px" class="logo-reg">
+      </div>
+      <div class="column column-2">
+        <div>
+            <h4  class="reg-head">Register Now!</h4><br>
+        </div>
+        <form action="" method="post">
+            {% csrf_token %}
+            <div class="mb-3">
+                <div class="input-group">
+                    <span class="input-group-text"><i class="fa-solid fa-user" style="color: #51a01c;"></i></span>
+                    {{form.first_name}}
+                </div>
+                
+            </div>
+            <div class="mb-3">
+                <div class="input-group">
+                    <span class="input-group-text"><i class="fa-regular fa-circle-user" style="color: #51a01c;"></i></span>
+                    {{form.username}}
+                </div>
+                
+            </div>
+            <div class="mb-3">
+                <div class="input-group">
+                    <span class="input-group-text"><i class="fa-regular fa-envelope" style="color: #51a01c;" ></i></span>
+                    {{form.email}}
+                </div>
+                
+            </div>
+            <div class="mb-3">
+                <div class="input-group">
+                    <span class="input-group-text"><i class="fa-solid fa-lock" style="color: #51a01c;"></i></span>
+                    {{form.password1}}
+                </div>
+            
+            </div>
+            <div class="mb-3">
+                <div class="input-group">
+                    <span class="input-group-text"><i class="fa-solid fa-lock" style="color: #51a01c;"></i></span>
+                    {{form.password2}}
+                </div>
+            </div>
+            <div>
+                <button type="submit" class="btn btn-success">Submit</button>
+            </div>
+        </form>
+        <div class="reg-icon">
+            <i class="fa-brands fa-facebook fa-xl"></i>
+            <i class="fa-brands fa-linkedin fa-xl"></i>
+            <i class="fa-brands fa-instagram fa-xl"></i>
+        </div>
+      </div>
+    </div>
+
+{% endblock %}

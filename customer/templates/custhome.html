@@ -1,0 +1,106 @@
+{% include 'navbar.html' %}
+{% block content %}
+<!doctype html>
+<html lang="en">
+  <head>
+    <title>Title</title>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+     <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <script src="https://kit.fontawesome.com/ad5414c00a.js" crossorigin="anonymous"></script>
+    <!-- Include Tempus Dominus Bootstrap 4 CSS and JS -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tempusdominus-bootstrap-4/5.0.0-alpha14/css/tempusdominus-bootstrap-4.min.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/tempusdominus-bootstrap-4/5.0.0-alpha14/js/tempusdominus-bootstrap-4.min.js"></script>
+  
+  
+    <style>
+    .search-form{
+      padding-top: 70px;
+      padding-left: 100px;
+      padding-bottom: 60px;
+    }
+    .seat-button{
+      position: absolute;
+      bottom: 0;
+      right: 0;
+      margin:0;
+
+    }
+    
+  </style>
+  </head>
+  <body>
+    <div class="container">
+      <div class="row search-form">
+          <div class="col-12">
+              <form action="" method="post">
+                  {% csrf_token %}
+                  <div class="row mb-3">
+                      <div style="width: 300px; border-radius:3px;">
+                          {{ form.source }}
+                      </div>
+                      <div style="width: 300px; height:20px; border-radius:3px;">
+                          {{ form.destination }}
+                      </div>
+                      <div style="width: 140px;">
+                          {{ form.date }}
+                      </div>
+                      <input type="submit" class="btn btn-success" value="Search">
+                  </div>
+              </form>
+          </div>
+      </div>
+      {% if res %}
+        {% for bus in res %}
+            <div class="card" style="margin-bottom: 20px;">
+              <div class="card-body">
+                <div class="row">
+                    <div class="col-md-3">
+                      <p class="card-title" style="padding-bottom: 10px;">KSRTC</p>
+                      <p class="card-text" style="padding-bottom: 10px;">A/C Seater</p>
+                      <i class="fa-solid fa-wifi" style="color:#707171;"></i>
+                      <i class="fa-solid fa-mattress-pillow" style="color: #707171; padding-left: 5px;"></i>
+                      <i class="fa-solid fa-location-arrow" style="color:#707171; padding-left: 5px;"></i>
+                    </div>
+                    <div class="col-md-3">
+                      <div class="row">
+                      <p class="card-text">{{bus.source}}</p>  
+                      </div>
+                      <div class="row" style="padding-top:20px;">
+                        <p class="card-text">{{bus.s_time}}</p>
+                      </div>
+                    </div>
+                    <div class="col-md-3">
+                      <div class="row">
+                        <p class="card-text">{{bus.destination}}</p>  
+                      </div>
+                        <div class="row" style="padding-top:20px;">
+                          <p class="card-text">{{bus.d_time}}</p>
+                        </div>  
+                    </div>
+                    <div class="col-md-3">
+                        <p class="card-text">INR:{{bus.price}}</p>
+                        <a href="{% url 'seats' bus.id %}" class="btn btn-success seat-button">View Seats</a>
+                    </div>
+                </div>
+              </div>
+            </div>
+        {% endfor %}
+      {% else %}
+            <div style="align-items: center; padding-left: 34%;">
+              <h4>Try another route!</h4>
+            </div>
+      {% endif %}
+  </div>
+  
+  </body>
+</html>
+{% endblock content %}
